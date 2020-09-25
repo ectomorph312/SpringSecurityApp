@@ -2,7 +2,7 @@ package org.example.spring_security_app.controllers;
 
 import org.example.spring_security_app.entity.User;
 import org.example.spring_security_app.repository.MessageRepository;
-import org.example.spring_security_app.service.MessageDetailService;
+import org.example.spring_security_app.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -18,10 +18,10 @@ public class MainController {
     @Autowired
     MessageRepository messageRepository;
 
-    private final MessageDetailService messageDetailService;
+    private final MessageService messageService;
 
-    public MainController(MessageDetailService messageDetailService) {
-        this.messageDetailService = messageDetailService;
+    public MainController(MessageService messageService) {
+        this.messageService = messageService;
     }
 
 
@@ -33,7 +33,7 @@ public class MainController {
     @GetMapping("/main")
     public String main(@RequestParam (required = false, defaultValue = "") String filter,
             Model model) {
-        messageDetailService.main(model, filter);
+        messageService.main(model, filter);
         return "main";
     }
 
@@ -41,7 +41,7 @@ public class MainController {
     public String addMessage(@AuthenticationPrincipal User user,
             @RequestParam String text,
             @RequestParam String tag, Map<String, Object> model) {
-        messageDetailService.addMessage(user, text, tag, model);
+        messageService.addMessage(user, text, tag, model);
         return "main";
     }
 }

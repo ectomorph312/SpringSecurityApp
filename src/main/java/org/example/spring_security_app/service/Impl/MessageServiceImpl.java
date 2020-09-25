@@ -1,19 +1,25 @@
-package org.example.spring_security_app.service;
+package org.example.spring_security_app.service.Impl;
 
 import org.example.spring_security_app.entity.Message;
 import org.example.spring_security_app.entity.User;
 import org.example.spring_security_app.repository.MessageRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.example.spring_security_app.service.MessageService;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import java.util.Map;
 
 @Service
-public class MessageDetailService {
-    @Autowired
-    private MessageRepository messageRepository;
+public class MessageServiceImpl implements MessageService {
 
+    private final MessageRepository messageRepository;
+
+    public MessageServiceImpl(MessageRepository messageRepository) {
+        this.messageRepository = messageRepository;
+    }
+
+
+    @Override
     public void main(Model model,String filter) {
         Iterable<Message> messages;
 
@@ -26,6 +32,7 @@ public class MessageDetailService {
         model.addAttribute("filter", filter);
     }
 
+    @Override
     public void addMessage(User user, String text, String tag, Map<String, Object> model) {
         Message message = new Message(text, tag, user);
         messageRepository.save(message);
@@ -33,5 +40,4 @@ public class MessageDetailService {
         Iterable<Message> messages = messageRepository.findAll();
         model.put("messages", messages);
     }
-
 }

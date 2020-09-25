@@ -1,20 +1,16 @@
 package org.example.spring_security_app.controllers;
 
 
-import org.example.spring_security_app.entity.Role;
 import org.example.spring_security_app.entity.User;
 import org.example.spring_security_app.repository.UserRepository;
-import org.example.spring_security_app.service.UserDetailService;
+import org.example.spring_security_app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
 import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/user")
@@ -23,22 +19,22 @@ public class UserController {
     @Autowired
     UserRepository userRepository;
 
-    private final UserDetailService userDetailService;
+    private final UserService userService;
 
-    public UserController(UserDetailService userDetailService) {
-        this.userDetailService = userDetailService;
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
 
     @GetMapping
     public String userList(Model model) {
-        userDetailService.userList(model);
+        userService.userList(model);
         return "userList";
     }
 
     @GetMapping("{user}")
     public String userEditForm(@PathVariable User user, Model model) {
-        userDetailService.userEditForm(user, model);
+        userService.userEditForm(user, model);
         return "userEdit";
     }
 
@@ -52,7 +48,7 @@ public class UserController {
             @RequestParam Map<String, String> form,
             @RequestParam("userId") User user
     ) {
-        userDetailService.userSave(deactivate , username, name,
+        userService.userSave(deactivate , username, name,
                                     surname, patronymic, form, user);
         return "redirect:/user";
     }
