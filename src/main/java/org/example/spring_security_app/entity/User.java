@@ -6,6 +6,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -26,6 +28,14 @@ public class User implements UserDetails {
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
     private Set<Role> roles;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "todoId")
+    private List<Todo> todoList;
+
+    public List<Todo> getTodoList() {
+        return todoList;
+    }
 
     public boolean isAdmin() {
         return roles.contains(Role.ADMIN);
