@@ -10,5 +10,5 @@ public interface TodoService {
     List<Todo> todoList(String  username);
     void todoDelete(Long id);
     Todo findById(Long id);
-    void todoEditForm(String title, String description, TodoStatus status, Todo todo);
+    void todoEditForm(Todo todo);
 }

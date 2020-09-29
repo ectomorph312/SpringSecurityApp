@@ -26,7 +26,7 @@ public class TodoServiceImpl implements TodoService {
     @Override
     public void todoAdd(Todo todo, String username) {
         User user = userRepository.findByUsername(username);
-        todo.setCreated(LocalDateTime.now());
+        todo.setCreated(LocalDateTime.now().withNano(0).withSecond(0));
         user.getTodoList().add(todo);
         userRepository.save(user);
     }
@@ -48,10 +48,7 @@ public class TodoServiceImpl implements TodoService {
     }
 
     @Override
-    public void todoEditForm(String title, String description,TodoStatus status, Todo todo) {
-        todo.setTitle(title);
-        todo.setDescription(description);
-        todo.setStatus(status);
+    public void todoEditForm(Todo todo) {
         todoRepository.save(todo);
     }
 

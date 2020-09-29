@@ -22,6 +22,10 @@
                         <input class="form-control" name="description" type="text" value="${todo.description}" />
                     </div>
                 </div>
+                <div class="form-group">
+                    <label>Дата оканчание</label>
+                    <input type="datetime-local" name="completed" class="form-control" value="${todo.completed}">
+                </div>
 
                 <div class="form-group row">
                     <label class="col-lg-3 col-form-label form-control-label">Статус</label>
@@ -39,7 +43,8 @@
                         <button type="submit" class="btn btn-dark">Save Changes</button>
                     </div>
                 </div>
-                <input type="hidden" value="${todo.id}" name="todoId">
+                <input type="hidden" name="created" class="form-control" value="${todo.created}">
+                <input type="hidden" value="${todo.id}" name="id">
                 <input type="hidden" value="${_csrf.token}" name="_csrf">
             </form>
         </div>

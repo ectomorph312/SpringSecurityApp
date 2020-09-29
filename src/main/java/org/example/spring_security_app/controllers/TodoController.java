@@ -52,11 +52,8 @@ public class TodoController {
     }
 
     @PostMapping
-    public String todoEditForm(@RequestParam String title,
-                           @RequestParam String description,
-                           @RequestParam TodoStatus status,
-                           @RequestParam(value = "todoId") Todo todo) {
-        todoService.todoEditForm(title, description, status, todo);
+    public String todoEditForm(@ModelAttribute Todo todo) {
+        todoService.todoEditForm(todo);
         return "redirect:/todo";
 
     }
