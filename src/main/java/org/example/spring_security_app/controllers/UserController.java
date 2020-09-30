@@ -45,11 +45,12 @@ public class UserController {
             @RequestParam String name,
             @RequestParam String surname,
             @RequestParam String patronymic,
+            @RequestParam String email,
             @RequestParam Map<String, String> form,
             @RequestParam("userId") User user
     ) {
         userService.userSave(deactivate , username, name,
-                                    surname, patronymic, form, user);
+                                    surname, patronymic, email, form, user);
         return "redirect:/user";
     }
 }

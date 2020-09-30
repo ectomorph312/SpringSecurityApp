@@ -14,6 +14,7 @@ public interface UserService {
                   String name,
                   String surname,
                   String patronymic,
+                  String email,
                   Map<String, String> form,
                   User user
     );

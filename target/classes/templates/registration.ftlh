@@ -23,6 +23,12 @@
             <input type="text" name="patronymic" class="form-control" placeholder="Patronymic">
         </div>
     </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-4">
+            <input type="email" name="email" class="form-control" placeholder="email">
+        </div>
+    </div>
 </div>
 <@l.login "/registration" true/>
 </@c.page>

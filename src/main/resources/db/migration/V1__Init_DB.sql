@@ -20,6 +20,7 @@ create table usr (
     patronymic varchar(255),
     surname varchar(255),
     username varchar(255),
+    email varchar(255),
     primary key (id)
 );
 

@@ -56,11 +56,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void userSave(boolean deactivate, String username, String name, String surname, String patronymic, Map<String, String> form, User user) {
+    public void userSave(boolean deactivate, String username, String name, String surname, String patronymic,String email, Map<String, String> form, User user) {
         user.setUsername(username);
         user.setName(name);
         user.setSurname(surname);
         user.setPatronymic(patronymic);
+        user.setEmail(email);
         if(deactivate == true) {
             user.setActive(true);
         } else {
